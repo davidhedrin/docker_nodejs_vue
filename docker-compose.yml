@@ -1,11 +1,12 @@
 version: '3'
 
 services:
+  # Vue Client
   client-node:
     container_name: client-node
     restart: always
     build:
-      context: ./www/client
+      context: ./www/vue_client
       dockerfile: Dockerfile
     ports:
       - "5172:5172"
@@ -14,19 +15,32 @@ services:
     networks:
       - app-network
 
+  # Node Server
   server-node:
     container_name: server-node
     restart: always
     build:
-      context: ./www/server
+      context: ./www/node_server
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./www/server:/app
+      - ./www/node_server:/app
     networks:
       - app-network
+
+  # Lumen Server
+  lumen-server:
+    container_name: "lumen-server"
+    restart: always
+    build:
+      context: ./www/lumen_server
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    command: php -S 0.0.0.0:8000 -t public
   
+  # Database PostgreSQL
   postgres-db:
     image: postgres:latest
     container_name: "postgres_node"
