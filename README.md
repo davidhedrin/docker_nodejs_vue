@@ -41,3 +41,7 @@ After finish setup server, install library express and nodemon.
 - docker-compose rm -f [CONTAINER NAME]
 - docker-compose rmi -f [IMAGE NAME / IMAGE ID]
 ```
+**Use this steps for updating content vue becouse need to rebuild project after finish change:
+1. Remove that container using ``` docker-compose rm -f [CONTAINER NAME] ```
+2. Remove that images vue using ``` docker-compose rmi -f [IMAGE NAME / IMAGE ID] ```
+3. Run again ``` docker-compose up -d ``` to rebuild again vue project
