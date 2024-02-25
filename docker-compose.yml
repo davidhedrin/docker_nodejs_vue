@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  client-node:
+    container_name: client-node
+    restart: always
+    build:
+      context: ./www/client
+      dockerfile: Dockerfile
+    ports:
+      - "5172:5172"
+    depends_on:
+      - server-node
+    networks:
+      - app-network
+
+  server-node:
+    container_name: server-node
+    restart: always
+    build:
+      context: ./www/server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./www/server:/app
+    networks:
+      - app-network
+  
+  postgres-db:
+    image: postgres:latest
+    container_name: "postgres_node"
+    restart: always
+    ports:
+      - "5431:5432"
+    environment:
+      # POSTGRES_DB: crud_node
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      # - postgres-data:/var/lib/postgresql/data
+      - ./db/postgresql/data:/var/lib/postgresql/data
+
+networks:
+  app-network:
+    driver: bridge
