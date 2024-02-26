@@ -14,6 +14,7 @@ services:
       - server-node
     networks:
       - app-network
+    # command: sh -c "npm run build && npm run preview"
 
   # Node Server
   server-node:

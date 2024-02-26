@@ -20,7 +20,8 @@ EXPOSE 5172
 RUN npm run build
 
 # Expose the port that the application will run on
-EXPOSE 5172
+# EXPOSE 5172
 
 # Run the preview command after the build
-CMD /bin/sh -c "npm run preview"
+# CMD /bin/sh -c "npm run preview"
+CMD ["npm", "run", "preview"]
