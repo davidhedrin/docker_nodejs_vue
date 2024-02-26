@@ -52,7 +52,15 @@ ports:
 - docker-compose rm -f [CONTAINER NAME]
 - docker-compose rmi -f [IMAGE NAME / IMAGE ID]
 ```
-**Use this steps for updating content vue becouse need to rebuild project after finish change:
+Use this steps for updating content vue becouse need to rebuild project after finish change:
+
+**Using remove images, Need to download image again:
 1. Remove that container using ``` docker-compose rm -f [CONTAINER NAME] ```
 2. Remove that images vue using ``` docker-compose rmi -f [IMAGE NAME / IMAGE ID] ```
 3. Run again ``` docker-compose up -d ``` to rebuild again vue project
+
+**Not remove image, but clone as <none> and remove again (Recomended step):
+1. Remove that container using ``` docker-compose rm -f [CONTAINER NAME] ```
+2. Run again ``` docker-compose up -d --build [CONTAINER NAME] ``` to rebuild again vue project
+3. Show all images to get images_id ``` docker-compose images ```
+4. Remove image <none> Unused ``` docker rmi -f [IMAGES ID] ```
