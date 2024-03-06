@@ -39,6 +39,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8001:8000"
+    volumes:
+      - ./www/lumen_server:/app
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
     command: php -S 0.0.0.0:8000 -t public
   
   # Database PostgreSQL
