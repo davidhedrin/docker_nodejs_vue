@@ -27,8 +27,9 @@ Create project Node.js as Server folder and add that **Dockerfile** insides. Set
 
 After finish setup server, install library express and nodemon.
 ```sh
-# npm i express nodemon body-parser
+# npm i express nodemon body-parser dotenv
 # npm i pg // If using postgresql database
+# npm i cors // For handle cors if using micro service frontend
 ```
 
 **- Postgresql** configuration connection **Pool pg** file for database:
