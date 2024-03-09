@@ -43,6 +43,8 @@ services:
       - ./www/lumen_server:/app
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
     command: php -S 0.0.0.0:8000 -t public
+    networks:
+    - app-network
   
   # Database PostgreSQL
   postgres-db:
@@ -59,6 +61,8 @@ services:
     volumes:
       # - postgres-data:/var/lib/postgresql/data
       - ./db/postgresql/data:/var/lib/postgresql/data
+    networks:
+    - app-network
 
 networks:
   app-network:

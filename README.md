@@ -10,7 +10,7 @@ This template make docker home using Node.js + Express.js for server and using V
 - Download and Install [Composer](https://getcomposer.org/download/) Machine (For Project Lumen)
 
 ### Installation
-- Vue + Vite Proejct (Client):
+1. **Vue + Vite Proejct (Client):**
 
 Open terminal in Client folder path. Create project vue+vite as Client folder and add that **Dockerfile** insides.
 ```sh
@@ -18,19 +18,44 @@ Open terminal in Client folder path. Create project vue+vite as Client folder an
 ```
 
 #
-- Node.js & Express.js (Server):
+2. **Node.js & Express.js (Server):**
 
 Create project Node.js as Server folder and add that **Dockerfile** insides. Setup project config and make name your server file name (_Exp: server.js_).
 ```sh
 # npm init
 ```
+
 After finish setup server, install library express and nodemon.
 ```sh
-# npm i express nodemon
+# npm i express nodemon body-parser
+# npm i pg // If using postgresql database
+```
+
+**- Postgresql** configuration connection **Pool pg** file for database:
+- Connection if node running with docker engine
+```
+const pool = new Pool({
+  user: 'postgres',
+  password: 'postgres',
+  host: 'postgres-db', // Use services name postgres
+  port: 5432, // Use port postgre, Not alias
+  database: 'e_constultation'
+});
+```
+
+- Connection if node not running whitout docker engine
+```
+const pool = new Pool({
+  user: 'postgres',
+  password: 'postgres',
+  host: 'localhost', // Using localhost host
+  port: 5431, // Use port alias from docker postgres service port
+  database: 'e_constultation'
+});
 ```
 
 #
-- Lumen PHP (Server):
+3. **Lumen PHP (Server):**
 
 Create project lumen and add thet **Dockerfile** file insides that folder project
 ```sh
@@ -41,6 +66,16 @@ Example:
 ```
 ports:
       - "8001:8000"                 # 8000 from images Dockerfile, 8001 is aliases
+```
+
+**- Postgresql** configuration connection **.env** file for database:
+```
+DB_CONNECTION=pgsql
+DB_HOST=postgres-db // Using service name docker
+DB_PORT=5432 // Use port postgre, Not alias
+DB_DATABASE=msib_test
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
 ```
 
 ### Script Run Docker
