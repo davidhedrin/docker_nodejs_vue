@@ -14,7 +14,7 @@ This template make docker home using Node.js + Express.js for server and using V
 
 Open terminal in Client folder path. Create project vue+vite as Client folder and add that **Dockerfile** insides.
 ```sh
-# npm create vue@latest
+& npm create vue@latest
 ```
 
 #
@@ -22,14 +22,20 @@ Open terminal in Client folder path. Create project vue+vite as Client folder an
 
 Create project Node.js as Server folder and add that **Dockerfile** insides. Setup project config and make name your server file name (_Exp: server.js_).
 ```sh
-# npm init
+& npm init
 ```
 
 After finish setup server, install library express and nodemon.
 ```sh
-# npm i express nodemon body-parser dotenv
-# npm i pg // If using postgresql database
-# npm i cors // For handle cors if using micro service frontend
+& npm i express nodemon body-parser dotenv
+& npm i pg // If using postgresql database
+& npm i cors // For handle cors if using micro service frontend
+```
+
+**- Sequelize** for ORM [Documentation](https://sequelize.org/docs/v6/getting-started/)
+```
+$ npm install --save sequelize
+$ npm install --save-dev sequelize-cli
 ```
 
 **- Postgresql** configuration connection **Pool pg** file for database:
@@ -60,7 +66,7 @@ const pool = new Pool({
 
 Create project lumen and add thet **Dockerfile** file insides that folder project
 ```sh
-# composer create-project --prefer-dist laravel/lumen blog
+& composer create-project --prefer-dist laravel/lumen blog
 ```
 ** The port for lumen in Dockerfile must [8000](https://lumen.laravel.com/docs/10.x#:~:text=Serving%20Your%20Application) ``` php -S localhost:8000 -t public ```. You can edit aliases that lumen container in dokcer-compose.yml
 Example:
